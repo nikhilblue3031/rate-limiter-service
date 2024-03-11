@@ -45,6 +45,7 @@ public class RateLimitControllerTest extends BaseRateLimiterTest {
             mockMvc.perform(get(IS_RATE_LIMITED_ENDPOINT + "testToken"))
                     .andExpect(status().isOk())
                     .andExpect(content().string("false"));
+            Thread.sleep(1000);
         }
 
         // Make additional request and assert rate limited
@@ -63,6 +64,7 @@ public class RateLimitControllerTest extends BaseRateLimiterTest {
             mockMvc.perform(get(IS_RATE_LIMITED_ENDPOINT + "testToken"))
                     .andExpect(status().isOk())
                     .andExpect(content().string("false"));
+            Thread.sleep(1000);
         }
 
         // Make additional request and assert rate limited again, if needed
