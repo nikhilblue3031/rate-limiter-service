@@ -23,7 +23,7 @@ This Rate Limiter Service is a RESTful API designed to manage and enforce API ra
 ## Setup and Running Instructions
 1. Clone the project repository:
    ```
-   git clone
+   git clone https://github.com/nikhilblue3031/rate-limiter-service.git
    ```
    
 2. Navigate to the project directory:
