@@ -55,9 +55,6 @@ public class RateLimitService {
                 ConcurrentHashMap<Long, AtomicInteger> windows = tokenAccessMap.computeIfAbsent(token, k -> new ConcurrentHashMap<>());
                 AtomicInteger currentCount = windows.computeIfAbsent(currentWindowKey, k -> new AtomicInteger(0));
 
-                if (token.equals("forceException")) {
-                    throw new RuntimeException("Forced exception for testing");
-                }
                 if (currentCount.incrementAndGet() > rateLimitConfig.getCalls()) {
                     // Rate limit exceeded
                     return true;

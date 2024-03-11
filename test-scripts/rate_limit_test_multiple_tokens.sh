@@ -37,6 +37,7 @@ check_rate_limit_for_token() {
 
 # Perform concurrent rate limit checks for all tokens
 perform_concurrent_checks() {
+  echo "Sending rate limit requests..."
     for token in "${TOKENS[@]}"
     do
         check_rate_limit_for_token "$token" &
@@ -57,11 +58,15 @@ display_results() {
 }
 
 # Main
+echo ""
 echo "Starting rate limit check..."
+echo ""
 # Fetch and print the current rate limit configuration
 get_current_config
 # Perform concurrent requests for multiple tokens
+echo ""
 perform_concurrent_checks
 # Display the requests rate limiting results
+echo ""
 display_results
 echo "Rate limit check completed."
