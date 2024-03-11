@@ -17,7 +17,7 @@ REQUESTS=10
 get_current_config() {
     echo "Fetching current rate limit configuration..."
     curl -s "$CONFIG_ENDPOINT"
-    echo "" # New line for better readability
+    echo ""
 }
 
 # Function to perform rate limit check for a single token

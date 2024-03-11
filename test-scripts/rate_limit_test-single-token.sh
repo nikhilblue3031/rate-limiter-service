@@ -3,10 +3,9 @@
 # Base URL for the API
 BASE_URL="http://localhost:8082/api/v1/rate-limit"
 
-# Endpoint to get current rate limit configuration
-CONFIG_ENDPOINT="$BASE_URL/config"
 
-# Endpoint for rate limiting check
+# Endpoints
+CONFIG_ENDPOINT="$BASE_URL/config"
 RATE_LIMITED_ENDPOINT="$BASE_URL/is_rate_limited/testToken"
 
 # Number of requests to send
@@ -32,10 +31,14 @@ check_rate_limit() {
 }
 
 # Main
+echo ""
 echo "Starting rate limit check..."
+echo ""
 # Fetch and print the current rate limit configuration
+echo ""
 get_current_config
 # Perform rate limit checks
+echo ""
 check_rate_limit
 echo "Rate limit check completed."
 
