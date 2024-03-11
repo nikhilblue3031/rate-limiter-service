@@ -1,0 +1,10 @@
+version: '3.8'
+services:
+  ratelimiter:
+    build: .
+    ports:
+      - "8082:8082"
+    environment:
+      - SPRING_PROFILES_ACTIVE=dev
+    volumes:
+      - ./logs:/logs # Maps ./logs directory on the host to /logs in the container.

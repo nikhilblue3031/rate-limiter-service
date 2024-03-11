@@ -1,0 +1,20 @@
+server:
+  port: 8082 # Customize the server port if needed
+
+spring:
+  application:
+    name: rate-limiter-service
+
+ratelimit:
+  calls: 2 # Initial rate limit
+  interval: 30 # Initial interval duration
+
+logging:
+  level:
+    root: INFO
+    com.demo.ratelimiter: DEBUG
+  file:
+    name: /logs/rate-limiter-service.log
+  pattern:
+    console: "%d{yyyy-MM-dd HH:mm:ss} [%thread] %-5level %logger{36} - %msg%n"
+    file: "%d{yyyy-MM-dd HH:mm:ss} [%thread] %-5level %logger{36} - %msg%n"
