@@ -1,4 +1,4 @@
-# Rate Limiter Service
+# Rate Limiter Service - Fixed Window Algorithm
 
 This Rate Limiter Service is a RESTful API designed to manage and enforce API rate limits, ensuring clients adhere to specified request limits within defined time intervals. Built with Spring Boot, it provides endpoints for setting rate limits, checking rate limit status, and retrieving current rate limit configurations.
 
