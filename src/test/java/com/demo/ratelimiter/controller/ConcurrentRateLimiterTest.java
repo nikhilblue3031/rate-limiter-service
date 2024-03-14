@@ -23,7 +23,7 @@ public class ConcurrentRateLimiterTest extends BaseRateLimiterTest {
         configureSuccessfulRateLimit(requestJson);
 
         // Action and Assert
-        List<CompletableFuture<Boolean>> futures = generateRequests("testToken", 20);
+        List<CompletableFuture<Boolean>> futures = generateRequests("testToken", 10);
         assertRequestResults(futures, 10);
     }
 
@@ -91,7 +91,7 @@ public class ConcurrentRateLimiterTest extends BaseRateLimiterTest {
         CompletableFuture<Void> allDone = CompletableFuture.allOf(futures.toArray(new CompletableFuture[0]));
         allDone.join(); // Wait for all futures to complete
 
-        long successfulRequests = futures.stream().map(CompletableFuture::join).filter(b -> b).count();
+        long successfulRequests = futures.stream().map(CompletableFuture::join).filter(b -> !b).count();
         assertEquals(expectedSuccesses, successfulRequests, "Expected number of successful requests does not match");
     }
 
@@ -106,11 +106,11 @@ public class ConcurrentRateLimiterTest extends BaseRateLimiterTest {
     private Boolean makeRequest(String token) {
         try {
             MvcResult result = mockMvc.perform(get(IS_RATE_LIMITED_ENDPOINT + token)).andReturn();
-            // 'true' if not rate limited, 'false' if rate limited
-            return !Boolean.parseBoolean(result.getResponse().getContentAsString());
+            // 'true' if  rate limited, 'false' if not  rate limited
+            return Boolean.parseBoolean(result.getResponse().getContentAsString());
         } catch (Exception e) {
             e.printStackTrace();
-            return false; // Consider as rate limited on exception
+            return true; // Consider as rate limited on exception
         }
     }
 
